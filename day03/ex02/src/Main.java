@@ -1,3 +1,5 @@
+import Controller.Counter;
+
 import java.util.Random;
 
 public class Main {
@@ -15,9 +17,10 @@ public class Main {
         Random random = new Random();
 
         for (int i = 0; i < arraySize; ++i) {
-            randomNumbers[i] = random.nextInt();
+            randomNumbers[i] = random.nextInt(1, 100);
         }
 
-
+        Counter counter = new Counter(randomNumbers, threadsCount);
+        counter.count();
     }
 }
