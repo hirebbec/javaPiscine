@@ -12,8 +12,8 @@ public class Repeater extends Thread {
 
     @Override
     public void run() {
-        for (int i = 0; i < count; ++i) {
-            synchronized (lock) {
+        synchronized (lock) {
+            for (int i = 0; i < count; ++i) {
                 lock.notifyAll();
                 System.out.println(message);
                 try {
@@ -22,6 +22,7 @@ public class Repeater extends Thread {
                     throw new RuntimeException(e);
                 }
             }
+            lock.notifyAll();
         }
     }
 }
