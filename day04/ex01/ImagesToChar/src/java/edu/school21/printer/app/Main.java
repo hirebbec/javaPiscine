@@ -2,14 +2,35 @@ package edu.school21.printer.app;
 
 import edu.school21.printer.logic.Printer;
 
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
+
+@Parameters(separators = "=")
 public class Main {
-    public static void main(String[] args) {
-        if (args.length != 2 || args[0].length() != 1 || args[1].length() != 1) {
-            System.err.println("Program takes 2 arguments, 2 characters");
-            System.exit(1);
+    @Parameter(names = {"--white"})
+    private static String white;
+    @Parameter(names = {"--black"})
+    private static String black;
+
+    private static final String IMAGE_PATH = "/resources/it.bmp";
+
+    public static void main(String... argv) {
+        Main main = new Main();
+        JCommander.newBuilder()
+                .addObject(main)
+                .build()
+                .parse(argv);
+
+        Printer converter = new Printer(white, black);
+
+        try {
+            converter.drawImage(new File(Main.class.getResource(IMAGE_PATH).getFile()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Printer printer = new Printer(args[0].charAt(0), args[1].charAt(0));
-        printer.openImage("./target/resources/it.bmp");
-        printer.printImage();
     }
 }
