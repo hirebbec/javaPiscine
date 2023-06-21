@@ -1,4 +1,4 @@
-package java.edu.school21.printer.logic;
+package edu.school21.printer.logic;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -28,11 +28,12 @@ public class Printer {
         for (int i = 0; i < image.getHeight(); ++i) {
             for (int j = 0; j < image.getWidth(); ++j) {
                 if (image.getRGB(i, j) == Color.WHITE.getRGB()) {
-                    System.out.println('.');
+                    System.out.print('.');
                 } else {
-                    System.out.println('0');
+                    System.out.print('0');
                 }
             }
+            System.out.println();
         }
     }
 }
