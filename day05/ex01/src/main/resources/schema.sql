@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS "User";
+DROP TABLE IF EXISTS Chatroom;
+DROP TABLE IF EXISTS Message;
+
+CREATE TABLE "User" (
+id SERIAL PRIMARY KEY,
+login varchar(80) NOT NULL,
+password varchar(80) NOT NULL);
+
+CREATE TABLE Chatroom (
+id SERIAL PRIMARY KEY,
+name varchar(80) NOT NULL,
+owner_id INTEGER NOT NULL);
+
+CREATE TABLE Message (
+id SERIAL PRIMARY KEY,
+author_id INTEGER NOT NULL,
+room_id INTEGER NOT NULL,
+text varchar(1024) NOT NULL,
+"date" DATE DEFAULT CURRENT_DATE);
