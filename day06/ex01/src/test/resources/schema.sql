@@ -1,0 +1,4 @@
+CREATE TABLE Product (
+id SERIAL PRIMARY KEY,
+name varchar(120) NOT NULL,
+price INTEGER NOT NULL);
